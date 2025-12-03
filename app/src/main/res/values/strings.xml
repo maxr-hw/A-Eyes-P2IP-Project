@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">A-Eyes</string>
+    <string name="camera_button">Camera Button</string>
+    <string name="ImageView_desc">Aim UI</string>
+    <string name="language_button_desc">Language Button</string>
+</resources>
