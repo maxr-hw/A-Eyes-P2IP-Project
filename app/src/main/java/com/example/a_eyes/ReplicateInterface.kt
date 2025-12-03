@@ -16,7 +16,7 @@ import org.json.JSONArray
 
 object ImageAnalyzer {
 
-    private const val MISTRAL_API_KEY = "90vLx9en23tpQt7dHZUgSe3aCYtp5S5M"
+    private const val MISTRAL_API_KEY = "YOUR_API_KEY_HERE"
     private const val MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions"
 
     private val client = OkHttpClient()
