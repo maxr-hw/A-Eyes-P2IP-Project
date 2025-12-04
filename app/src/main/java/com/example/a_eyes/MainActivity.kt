@@ -1,6 +1,7 @@
 package com.example.a_eyes
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.widget.ImageButton
@@ -31,6 +32,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 import java.util.Locale
+import androidx.core.net.toUri
 
 class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
@@ -94,6 +96,14 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         tts = TextToSpeech(this, this)
 
         progressBar = findViewById(R.id.progressBar)
+
+        val btnGithub = findViewById<ImageButton>(R.id.btnGithub)
+
+        btnGithub.setOnClickListener {
+            val githubUrl = "https://github.com/maxr-hw/A-Eyes-P2IP-Project"
+            val intent = Intent(Intent.ACTION_VIEW, githubUrl.toUri())
+            startActivity(intent)
+        }
 
         captureButton.setOnClickListener {
             takePhoto()
