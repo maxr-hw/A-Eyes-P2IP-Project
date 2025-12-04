@@ -4,4 +4,8 @@
     <string name="ImageView_desc">Aim UI</string>
     <string name="language_button_desc">Language Button</string>
     <string name="open_github_repository">Open GitHub repository</string>
+    <string name="title_activity_second">SecondActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="settings_button">settings button</string>
 </resources>

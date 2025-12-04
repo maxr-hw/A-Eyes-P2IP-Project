@@ -1,6 +1,7 @@
 package com.example.a_eyes
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private val simultaneousThreshold = 500L // ms
 
     var shouldTranslate = true
-    private var oldShouldTranslate = true
+    private lateinit var languageLauncher: androidx.activity.result.ActivityResultLauncher<Intent>
 
     private lateinit var gestureDetector: GestureDetector
 
@@ -59,29 +60,26 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
 
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val langToggleButton = findViewById<ImageButton>(R.id.langToggleButton)
-        langToggleButton.clipToOutline = true
-
-        langToggleButton.setOnClickListener {
-            shouldTranslate = !shouldTranslate
-
-            if (shouldTranslate != oldShouldTranslate) {
-                tts.stop()
-                oldShouldTranslate = shouldTranslate
+        // Register the launcher
+        languageLauncher = registerForActivityResult(
+            androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                shouldTranslate = data?.getBooleanExtra("selectedLang", true) ?: true
+                // Optional: confirm language change
+                speak(if (shouldTranslate) "Langue française sélectionnée" else "English selected")
             }
+        }
 
-            // Change icon depending on the mode
-            if (shouldTranslate) {
-                langToggleButton.setImageResource(R.drawable.ic_flag_fr)
-                Toast.makeText(this, "Traduction en français activée", Toast.LENGTH_SHORT).show()
-            } else {
-                langToggleButton.setImageResource(R.drawable.ic_flag_uk)
-                Toast.makeText(this, "Translation set to English", Toast.LENGTH_SHORT).show()
-            }
+        val settingsButton = findViewById<ImageButton>(R.id.settingsButton)
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra("currentLang", shouldTranslate)
+            languageLauncher.launch(intent) // Launch with new API
         }
 
         gestureDetector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
