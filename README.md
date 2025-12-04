@@ -2,6 +2,8 @@
 
 **Android app for real-time scene description, designed for people with visual impairments.**
 
+Note that this app only has one page, to simplify the use of the app, for the visually impaired. Apart from a button that is redirecting to this repository.
+
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-blue)](https://github.com/maxr-hw/A-Eyes-P2IP-Project)
 
 ---
