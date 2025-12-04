@@ -101,8 +101,12 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         btnGithub.setOnClickListener {
             val githubUrl = "https://github.com/maxr-hw/A-Eyes-P2IP-Project"
-            val intent = Intent(Intent.ACTION_VIEW, githubUrl.toUri())
-            startActivity(intent)
+
+            val customTabsIntent = androidx.browser.customtabs.CustomTabsIntent.Builder()
+                .setShowTitle(true)
+                .build()
+
+            customTabsIntent.launchUrl(this, githubUrl.toUri())
         }
 
         captureButton.setOnClickListener {
