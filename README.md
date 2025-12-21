@@ -10,7 +10,7 @@ Note that this app only has one page, to simplify the use of the app, for the vi
 
 ## 📌 Overview
 
-**A-Eyes** is an Android application developed as part of the **P2IP project** at **ESILV Engineering School**. The app leverages the device's camera and **Mistral's LLM APIs (Picstral and Mini LLM)** to provide real-time audio descriptions of the surrounding environment. Users can switch between **French** and **English** for descriptions.
+**A-Eyes** is an Android app that leverages the device's camera and **Mistral's LLM APIs (Picstral and Mini LLM)** to provide real-time audio descriptions of the surrounding environment. Users can switch between **French** and **English** for descriptions.
 
 ---
 
